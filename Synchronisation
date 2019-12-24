@@ -7,7 +7,7 @@ main*/
 
 class Display
 {
-    public void wish(String name) {
+    public synchronised void wish(String name) {
 	    
 	    for(int i=0;i<10;i++){
 	        System.out.println("Good");
@@ -22,7 +22,7 @@ class Display
 
 class MyT extends Thread
 {
-    Display d;
+    Display d;//if i dont put this line I get null pointer exception
     String name;
     
     MyT(Display d, String name){
@@ -42,8 +42,8 @@ class Main{
         
         Display d= new Display();
         
-        MyT t1 = new MyT(d,"ABZ");
-        MyT t2 = new MyT(d,"XYZ");
+        MyT t1 = new MyT(d,"ABZ"); //passing display object d while creating t1. This will act as pointer,
+        MyT t2 = new MyT(d,"XYZ"); // all threads are using the same display object hence we can synchronise on the object resource.
         MyT t3 = new MyT(d,"1212");
 
         //t.setPriority(1);
