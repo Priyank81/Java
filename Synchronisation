@@ -1,0 +1,66 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+
+/*classes used:
+Display 
+MyThread
+main*/
+
+
+
+class Display
+{
+    public void wish(String name) {
+	    
+	    for(int i=0;i<10;i++){
+	        System.out.println("Good");
+	    try{ Thread.sleep(500);
+		}
+		catch(InterruptedException e){}
+	    
+	    System.out.println(name);
+	    }
+	}
+}
+
+class MyT extends Thread
+{
+    Display d;
+    String name;
+    
+    MyT(Display d, String name){
+        this.d=d;
+        this.name=name;
+        }
+    public void run(){
+        d.wish(name);
+    }
+    
+}
+
+
+
+class Main{
+    public static void main (String[] args) throws InterruptedException {
+        
+        Display d= new Display();
+        
+        MyT t1 = new MyT(d,"ABZ");
+        MyT t2 = new MyT(d,"XYZ");
+        MyT t3 = new MyT(d,"1212");
+
+        //t.setPriority(1);
+        t1.start();
+        t2.start();
+        t3.start();
+
+        t1.join(1000);
+        
+            System.out.println("main thread");
+        }
+    }
