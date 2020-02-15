@@ -1,3 +1,7 @@
+/* to remove Nth node from the end of single linked list
+use an extra pointer 
+*/
+
  public class ListNode {
  *     int val;
  *     ListNode next;
